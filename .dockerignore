@@ -1,0 +1,9 @@
+.idea/
+.git/
+.gitignore
+target/
+.gradle/
+*.iml
+*.log
+*.class
+*.tmp
