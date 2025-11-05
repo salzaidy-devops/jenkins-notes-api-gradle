@@ -36,8 +36,8 @@ pipeline {
             steps {
                 script {
                     echo 'Building JAR file...'
-                    // sh 'gradlew bootJar'
-                    buildGradleBootJar()
+                    sh './gradlew bootJar'
+                    // buildGradleBootJar()
                 }
             }
         }
@@ -45,17 +45,16 @@ pipeline {
             steps {
                 script {
                     echo 'Building Docker image...'
-                    buildImage(ENV.IMAGE_NAME)
+                    buildImage(env.IMAGE_NAME)
                     dockerLogin()
-                    dockerPush(ENV.IMAGE_NAME)
+                    dockerPush(env.IMAGE_NAME)
                 }
             }
-        }
         stage('Deploy') {
             steps {
                 script {
                     echo 'Deploying Docker image...'
-                    def dockerCMD = "docker run -d -p 4000:4000 ${ENV.IMAGE_NAME}"
+                    def dockerCMD = "docker run -d -p 8082:8082 ${env.IMAGE_NAME}"
                     
                     sshagent(['ec2-server-key']) {
                         // this flag is to avoid host key verification issue
