@@ -34,9 +34,11 @@ pipeline {
         }
         stage('buildJarFile') {
             steps {
-                echo 'Building JAR file...'
-                // sh 'gradlew bootJar'
-                buildGradleBootJar()
+                script {
+                    echo 'Building JAR file...'
+                    // sh 'gradlew bootJar'
+                    buildGradleBootJar()
+                }
             }
         }
         stage('BuildDockerImage') {
