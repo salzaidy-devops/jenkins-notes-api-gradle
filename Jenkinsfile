@@ -36,8 +36,8 @@ pipeline {
             steps {
                 script {
                     echo 'Building JAR file...'
-                    sh './gradlew bootJar'
-                    // buildGradleBootJar()
+                    // sh './gradlew bootJar'
+                    buildGradleBootJar()
                 }
             }
         }
